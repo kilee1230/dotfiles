@@ -204,4 +204,18 @@ fi
 # adopt ssh (safe: only adopt config)
 adopt_file "$HOME_DIR/.ssh/config" "$REPO_DIR/ssh/config"
 
+# aws (manage config only; never credentials)
+if [ -d "$REPO_DIR/aws/.aws" ] || [ -f "$REPO_DIR/aws/.aws/config" ]; then
+	ensure_dir "$HOME_DIR/.aws"
+	if [ -f "$REPO_DIR/aws/.aws/config" ]; then
+		link_file "$REPO_DIR/aws/.aws/config" "$HOME_DIR/.aws/config"
+		if ! $DRY_RUN; then chmod 600 "$HOME_DIR/.aws/config" || true; fi
+	fi
+else
+	# adopt from user if present
+	if [ -f "$HOME_DIR/.aws/config" ]; then
+		adopt_file "$HOME_DIR/.aws/config" "$REPO_DIR/aws/.aws/config"
+	fi
+fi
+
 log "Done." 

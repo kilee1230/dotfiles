@@ -9,6 +9,7 @@ Opinionated dotfiles managed via symlinks. Includes configs for:
 - nvim
 - kitty
 - fish
+- aws (config only; credentials are not tracked)
 
 ## Requirements
 
@@ -48,6 +49,7 @@ make clean-backups# Delete created backup files (*.bak.*)
   - `--no-backup`: disable backup creation
 - Existing non-symlink files are backed up as `*.bak.YYYYMMDDHHMMSS` before being replaced.
 - SSH: only `~/.ssh/config` is managed. Private keys are not touched or tracked.
+- AWS: only `~/.aws/config` is managed. `~/.aws/credentials` is never adopted or linked.
 
 ## Layout
 
@@ -58,9 +60,10 @@ make clean-backups# Delete created backup files (*.bak.*)
 - `nvim/.config/nvim/**` -> `~/.config/nvim/**`
 - `kitty/.config/kitty/**` -> `~/.config/kitty/**`
 - `fish/.config/fish/**` -> `~/.config/fish/**`
+- `aws/.aws/config` -> `~/.aws/config`
 
 ## Tips
 
-- Keep secrets (SSH keys, tokens) out of this repo.
+- Keep secrets (SSH keys, tokens, AWS credentials) out of this repo.
 - After changing configs in `$HOME`, run `make adopt` to bring them back into the repo.
 - After editing files inside this repo, run `make install` to re-link to `$HOME`.
