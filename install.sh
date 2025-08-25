@@ -286,4 +286,24 @@ else
 	fi
 fi
 
+# GnuPG configs (config only; never keys)
+GNUPG_HOME="$HOME_DIR/.gnupg"
+REPO_GNUPG_DIR="$REPO_DIR/gnupg/.gnupg"
+ensure_dir "$GNUPG_HOME"
+if ! $DRY_RUN; then chmod 700 "$GNUPG_HOME" || true; fi
+if [ -d "$REPO_GNUPG_DIR" ]; then
+	for f in gpg.conf gpg-agent.conf dirmngr.conf; do
+		if [ -f "$REPO_GNUPG_DIR/$f" ]; then
+			link_file "$REPO_GNUPG_DIR/$f" "$GNUPG_HOME/$f"
+			if ! $DRY_RUN; then chmod 600 "$GNUPG_HOME/$f" || true; fi
+		fi
+	done
+else
+	for f in gpg.conf gpg-agent.conf dirmngr.conf; do
+		if [ -f "$GNUPG_HOME/$f" ]; then
+			adopt_file "$GNUPG_HOME/$f" "$REPO_GNUPG_DIR/$f"
+		fi
+	done
+fi
+
 log "Done." 

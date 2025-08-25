@@ -1,4 +1,4 @@
-.PHONY: help install adopt dry-run relink clean-backups
+.PHONY: help install adopt dry-run relink clean-backups backup-gnupg
 
 SHELL := /bin/bash
 REPO_DIR := $(shell cd "$(dir $(lastword $(MAKEFILE_LIST)))" && pwd)
@@ -21,4 +21,7 @@ relink: ## Force re-link by removing existing symlinks at destinations
 	bash $(INSTALL)
 
 clean-backups: ## Remove backups created by install script (.bak.*)
-	@bash -lc 'find $$HOME -maxdepth 1 -name "*.bak.*" -delete; find $$HOME/.config -name "*.bak.*" -delete; find $$HOME/.ssh -name "*.bak.*" -delete' 
+	@bash -lc 'find $$HOME -maxdepth 1 -name "*.bak.*" -delete; find $$HOME/.config -name "*.bak.*" -delete; find $$HOME/.ssh -name "*.bak.*" -delete'
+
+backup-gnupg: ## Create a local tar.gz backup of ~/.gnupg (do not commit)
+	@bash -lc 'set -e; dest=$${1:-$$HOME/.gnupg-backup-$$(date +%Y%m%d%H%M%S).tar.gz}; echo "Backing up ~/.gnupg to $$dest"; tar -czf "$$dest" -C $$HOME .gnupg; echo "Done: $$dest"' 

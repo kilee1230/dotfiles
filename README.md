@@ -13,6 +13,7 @@ Opinionated dotfiles managed via symlinks. Includes configs for:
   - amazonq subdirectory (non-secret files only)
 - VS Code (macOS User settings)
 - Cursor (macOS User settings)
+- GnuPG (config only; keys are not tracked)
 
 ## Requirements
 
@@ -37,11 +38,12 @@ make dry-run
 ## Common commands
 
 ```bash
-make install      # Create/update symlinks from repo to $HOME
-make adopt        # Move existing configs into repo, then link
-make dry-run      # Preview adopt + link without changes
-make relink       # Remove existing symlinks and re-link
-make clean-backups# Delete created backup files (*.bak.*)
+make install       # Create/update symlinks from repo to $HOME
+make adopt         # Move existing configs into repo, then link
+make dry-run       # Preview adopt + link without changes
+make relink        # Remove existing symlinks and re-link
+make clean-backups # Delete created backup files (*.bak.*)
+make backup-gnupg  # Tar.gz backup of ~/.gnupg (do not commit)
 ```
 
 ## Script details
@@ -54,6 +56,7 @@ make clean-backups# Delete created backup files (*.bak.*)
 - SSH: only `~/.ssh/config` is managed. Private keys are not touched or tracked.
 - AWS: only `~/.aws/config` and `~/.aws/amazonq/**` are managed. `~/.aws/credentials` is never adopted or linked.
 - VS Code/Cursor: User-level settings are managed (macOS paths below).
+- GnuPG: only `gpg.conf`, `gpg-agent.conf`, and `dirmngr.conf` are managed. Keys and keyrings are never tracked.
 
 ## Layout
 
@@ -68,9 +71,11 @@ make clean-backups# Delete created backup files (*.bak.*)
 - `aws/.aws/amazonq/**` -> `~/.aws/amazonq/**`
 - `vscode/Library Application Support/Code/User/{settings.json,keybindings.json,snippets/**}` -> `~/Library/Application Support/Code/User/...`
 - `cursor/Library Application Support/Cursor/User/{settings.json,keybindings.json,snippets/**}` -> `~/Library/Application Support/Cursor/User/...`
+- `gnupg/.gnupg/{gpg.conf,gpg-agent.conf,dirmngr.conf}` -> `~/.gnupg/{...}`
 
 ## Tips
 
-- Keep secrets (SSH keys, tokens, AWS credentials) out of this repo.
+- Keep secrets (SSH keys, tokens, AWS credentials, GnuPG private keys) out of this repo.
+- Use `make backup-gnupg` to archive your full `~/.gnupg` locally before changes.
 - After changing configs in `$HOME`, run `make adopt` to bring them back into the repo.
 - After editing files inside this repo, run `make install` to re-link to `$HOME`.
