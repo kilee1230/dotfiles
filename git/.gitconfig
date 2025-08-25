@@ -1,0 +1,18 @@
+[user]
+	name = Kin Fei Lee
+	email = kilee@seekasia.com
+	signingkey = E4AB12B106CA83BF
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[push]
+	autoSetupRemote = true
+[merge]
+	ff = false
+	commitMessage = Merge branch '%s'
+[pull]
+	rebase = true
+	ff = only
+[fetch]
+	ff = only
