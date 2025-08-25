@@ -10,6 +10,7 @@ Opinionated dotfiles managed via symlinks. Includes configs for:
 - kitty
 - fish
 - aws (config only; credentials are not tracked)
+  - amazonq subdirectory (non-secret files only)
 
 ## Requirements
 
@@ -49,7 +50,7 @@ make clean-backups# Delete created backup files (*.bak.*)
   - `--no-backup`: disable backup creation
 - Existing non-symlink files are backed up as `*.bak.YYYYMMDDHHMMSS` before being replaced.
 - SSH: only `~/.ssh/config` is managed. Private keys are not touched or tracked.
-- AWS: only `~/.aws/config` is managed. `~/.aws/credentials` is never adopted or linked.
+- AWS: only `~/.aws/config` and `~/.aws/amazonq/**` are managed. `~/.aws/credentials` is never adopted or linked.
 
 ## Layout
 
@@ -61,6 +62,7 @@ make clean-backups# Delete created backup files (*.bak.*)
 - `kitty/.config/kitty/**` -> `~/.config/kitty/**`
 - `fish/.config/fish/**` -> `~/.config/fish/**`
 - `aws/.aws/config` -> `~/.aws/config`
+- `aws/.aws/amazonq/**` -> `~/.aws/amazonq/**`
 
 ## Tips
 

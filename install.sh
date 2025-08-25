@@ -218,4 +218,18 @@ else
 	fi
 fi
 
+# aws amazonq directory
+if [ -d "$REPO_DIR/aws/.aws/amazonq" ]; then
+	while IFS= read -r -d '' file; do
+		rel_path="${file#"$REPO_DIR/aws/.aws/amazonq/"}"
+		src="$file"
+		dest="$HOME_DIR/.aws/amazonq/$rel_path"
+		link_file "$src" "$dest"
+	done < <(find "$REPO_DIR/aws/.aws/amazonq" -type f -print0)
+else
+	if [ -d "$HOME_DIR/.aws/amazonq" ]; then
+		adopt_file "$HOME_DIR/.aws/amazonq" "$REPO_DIR/aws/.aws/amazonq"
+	fi
+fi
+
 log "Done." 
