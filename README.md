@@ -2,18 +2,19 @@
 
 Opinionated dotfiles managed via symlinks. Includes configs for:
 
-- zsh
-- git
-- ssh (config only; keys are not tracked)
-- tmux
-- nvim
-- kitty
-- fish
 - aws (config only; credentials are not tracked)
   - amazonq subdirectory (non-secret files only)
-- VS Code (macOS User settings)
-- Cursor (macOS User settings)
-- GnuPG (config only; keys are not tracked)
+- brew
+- cursor (macOS User settings)
+- fish
+- git
+- gnupg (config only; keys are not tracked)
+- kitty
+- nvim
+- ssh (config only; keys are not tracked)
+- tmux
+- vscode (macOS User settings)
+- zsh
 
 ## Requirements
 
