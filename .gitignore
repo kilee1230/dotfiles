@@ -1,0 +1,7 @@
+.ssh/*
+!.ssh/config
+.gnupg/
+*.key
+*.pem
+*.der
+.DS_Store
