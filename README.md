@@ -11,6 +11,8 @@ Opinionated dotfiles managed via symlinks. Includes configs for:
 - fish
 - aws (config only; credentials are not tracked)
   - amazonq subdirectory (non-secret files only)
+- VS Code (macOS User settings)
+- Cursor (macOS User settings)
 
 ## Requirements
 
@@ -51,6 +53,7 @@ make clean-backups# Delete created backup files (*.bak.*)
 - Existing non-symlink files are backed up as `*.bak.YYYYMMDDHHMMSS` before being replaced.
 - SSH: only `~/.ssh/config` is managed. Private keys are not touched or tracked.
 - AWS: only `~/.aws/config` and `~/.aws/amazonq/**` are managed. `~/.aws/credentials` is never adopted or linked.
+- VS Code/Cursor: User-level settings are managed (macOS paths below).
 
 ## Layout
 
@@ -63,6 +66,8 @@ make clean-backups# Delete created backup files (*.bak.*)
 - `fish/.config/fish/**` -> `~/.config/fish/**`
 - `aws/.aws/config` -> `~/.aws/config`
 - `aws/.aws/amazonq/**` -> `~/.aws/amazonq/**`
+- `vscode/Library Application Support/Code/User/{settings.json,keybindings.json,snippets/**}` -> `~/Library/Application Support/Code/User/...`
+- `cursor/Library Application Support/Cursor/User/{settings.json,keybindings.json,snippets/**}` -> `~/Library/Application Support/Cursor/User/...`
 
 ## Tips
 

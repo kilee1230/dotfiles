@@ -232,4 +232,58 @@ else
 	fi
 fi
 
+# VS Code user settings (macOS)
+CODE_USER_DIR="$HOME_DIR/Library/Application Support/Code/User"
+REPO_CODE_DIR="$REPO_DIR/vscode/Library Application Support/Code/User"
+if [ -d "$REPO_CODE_DIR" ]; then
+	ensure_dir "$CODE_USER_DIR"
+	if [ -f "$REPO_CODE_DIR/settings.json" ]; then
+		link_file "$REPO_CODE_DIR/settings.json" "$CODE_USER_DIR/settings.json"
+	fi
+	if [ -f "$REPO_CODE_DIR/keybindings.json" ]; then
+		link_file "$REPO_CODE_DIR/keybindings.json" "$CODE_USER_DIR/keybindings.json"
+	fi
+	if [ -d "$REPO_CODE_DIR/snippets" ]; then
+		link_file "$REPO_CODE_DIR/snippets" "$CODE_USER_DIR/snippets"
+	fi
+else
+	# adopt from user if present
+	if [ -f "$CODE_USER_DIR/settings.json" ]; then
+		adopt_file "$CODE_USER_DIR/settings.json" "$REPO_CODE_DIR/settings.json"
+	fi
+	if [ -f "$CODE_USER_DIR/keybindings.json" ]; then
+		adopt_file "$CODE_USER_DIR/keybindings.json" "$REPO_CODE_DIR/keybindings.json"
+	fi
+	if [ -d "$CODE_USER_DIR/snippets" ]; then
+		adopt_file "$CODE_USER_DIR/snippets" "$REPO_CODE_DIR/snippets"
+	fi
+fi
+
+# Cursor user settings (macOS)
+CURSOR_USER_DIR="$HOME_DIR/Library/Application Support/Cursor/User"
+REPO_CURSOR_DIR="$REPO_DIR/cursor/Library Application Support/Cursor/User"
+if [ -d "$REPO_CURSOR_DIR" ]; then
+	ensure_dir "$CURSOR_USER_DIR"
+	if [ -f "$REPO_CURSOR_DIR/settings.json" ]; then
+		link_file "$REPO_CURSOR_DIR/settings.json" "$CURSOR_USER_DIR/settings.json"
+	fi
+	if [ -f "$REPO_CURSOR_DIR/keybindings.json" ]; then
+		link_file "$REPO_CURSOR_DIR/keybindings.json" "$CURSOR_USER_DIR/keybindings.json"
+	fi
+	if [ -d "$REPO_CURSOR_DIR/snippets" ]; then
+		link_file "$REPO_CURSOR_DIR/snippets" "$CURSOR_USER_DIR/snippets"
+	fi
+else
+	# adopt from user if present
+	if [ -f "$CURSOR_USER_DIR/settings.json" ]; then
+		adopt_file "$CURSOR_USER_DIR/settings.json" "$REPO_CURSOR_DIR/settings.json"
+	fi
+	if [ -f "$CURSOR_USER_DIR/keybindings.json" ]; then
+		adopt_file "$CURSOR_USER_DIR/keybindings.json" "$REPO_CURSOR_DIR/keybindings.json"
+	fi
+	if [ -d "$CURSOR_USER_DIR/snippets" ]; then
+		adopt_file "$CURSOR_USER_DIR/snippets" "$REPO_CURSOR_DIR/snippets"
+	fi
+fi
+
 log "Done." 
