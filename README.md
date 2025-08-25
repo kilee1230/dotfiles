@@ -44,6 +44,57 @@ make dry-run       # Preview adopt + link without changes
 make relink        # Remove existing symlinks and re-link
 make clean-backups # Delete created backup files (*.bak.*)
 make backup-gnupg  # Tar.gz backup of ~/.gnupg (do not commit)
+make brew-bundle   # Install Homebrew packages from ~/.Brewfile
+make brew-dump     # Export current Homebrew packages to brew/Brewfile
+```
+
+## macOS migration steps (new machine)
+
+1. Install Xcode Command Line Tools
+
+```bash
+xcode-select --install
+```
+
+2. Install Homebrew
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Add brew to PATH (follow on-screen instructions), e.g. for zsh:
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+source ~/.zprofile
+```
+
+3. Clone dotfiles and link configs
+
+```bash
+git clone git@github.com:<your-username>/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+make install        # or make adopt if preexisting configs exist
+```
+
+4. Install apps via Brewfile
+
+```bash
+make brew-bundle    # uses ~/.Brewfile (symlinked from repo if present)
+```
+
+5. Restore editors and shells
+
+- VS Code and Cursor settings are linked automatically
+- Open VS Code, sign in to extensions sync if you use it
+- Start a new terminal session to load zsh config
+
+6. AWS, SSH, and GnuPG
+
+- SSH: add your private keys into `~/.ssh` manually if needed; keys are not tracked
+- AWS: `~/.aws/config` and `amazonq/` are linked; put credentials back into `~/.aws/credentials`
+- GnuPG: configs are linked; import keys if needed and verify permissions
+
+7. Optional: export current brew state back to repo
+
+```bash
+make brew-dump
 ```
 
 ## Script details
@@ -55,7 +106,7 @@ make backup-gnupg  # Tar.gz backup of ~/.gnupg (do not commit)
 - Existing non-symlink files are backed up as `*.bak.YYYYMMDDHHMMSS` before being replaced.
 - SSH: only `~/.ssh/config` is managed. Private keys are not touched or tracked.
 - AWS: only `~/.aws/config` and `~/.aws/amazonq/**` are managed. `~/.aws/credentials` is never adopted or linked.
-- VS Code/Cursor: User-level settings are managed (macOS paths below).
+- VS Code/Cursor: User-level settings are managed (macOS paths above).
 - GnuPG: only `gpg.conf`, `gpg-agent.conf`, and `dirmngr.conf` are managed. Keys and keyrings are never tracked.
 
 ## Layout
@@ -72,6 +123,7 @@ make backup-gnupg  # Tar.gz backup of ~/.gnupg (do not commit)
 - `vscode/Library Application Support/Code/User/{settings.json,keybindings.json,snippets/**}` -> `~/Library/Application Support/Code/User/...`
 - `cursor/Library Application Support/Cursor/User/{settings.json,keybindings.json,snippets/**}` -> `~/Library/Application Support/Cursor/User/...`
 - `gnupg/.gnupg/{gpg.conf,gpg-agent.conf,dirmngr.conf}` -> `~/.gnupg/{...}`
+- `brew/Brewfile` -> `~/.Brewfile`
 
 ## Tips
 

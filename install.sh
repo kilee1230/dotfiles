@@ -306,4 +306,14 @@ else
 	done
 fi
 
+# Homebrew Brewfile mapping
+REPO_BREWFILE="$REPO_DIR/brew/Brewfile"
+if [ -f "$REPO_BREWFILE" ]; then
+	link_file "$REPO_BREWFILE" "$HOME_DIR/.Brewfile"
+else
+	if [ -f "$HOME_DIR/.Brewfile" ]; then
+		adopt_file "$HOME_DIR/.Brewfile" "$REPO_BREWFILE"
+	fi
+fi
+
 log "Done." 

@@ -1,4 +1,4 @@
-.PHONY: help install adopt dry-run relink clean-backups backup-gnupg
+.PHONY: help install adopt dry-run relink clean-backups backup-gnupg brew-bundle brew-dump
 
 SHELL := /bin/bash
 REPO_DIR := $(shell cd "$(dir $(lastword $(MAKEFILE_LIST)))" && pwd)
@@ -24,4 +24,10 @@ clean-backups: ## Remove backups created by install script (.bak.*)
 	@bash -lc 'find $$HOME -maxdepth 1 -name "*.bak.*" -delete; find $$HOME/.config -name "*.bak.*" -delete; find $$HOME/.ssh -name "*.bak.*" -delete'
 
 backup-gnupg: ## Create a local tar.gz backup of ~/.gnupg (do not commit)
-	@bash -lc 'set -e; dest=$${1:-$$HOME/.gnupg-backup-$$(date +%Y%m%d%H%M%S).tar.gz}; echo "Backing up ~/.gnupg to $$dest"; tar -czf "$$dest" -C $$HOME .gnupg; echo "Done: $$dest"' 
+	@bash -lc 'set -e; dest=$${1:-$$HOME/.gnupg-backup-$$(date +%Y%m%d%H%M%S).tar.gz}; echo "Backing up ~/.gnupg to $$dest"; tar -czf "$$dest" -C $$HOME .gnupg; echo "Done: $$dest"'
+
+brew-bundle: ## Install all Homebrew packages from Brewfile
+	@bash -lc 'test -f $$HOME/.Brewfile || echo "No ~/.Brewfile found"; test -f $$HOME/.Brewfile && brew bundle --global'
+
+brew-dump: ## Export current Homebrew packages to Brewfile in repo
+	@bash -lc 'mkdir -p $(REPO_DIR)/brew; brew bundle dump --file=$(REPO_DIR)/brew/Brewfile --force' 
