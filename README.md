@@ -15,6 +15,7 @@ Opinionated dotfiles managed via symlinks. Includes configs for:
 - tmux
 - vscode (macOS User settings)
 - zsh
+- bash
 
 ## Requirements
 

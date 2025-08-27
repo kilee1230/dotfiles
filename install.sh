@@ -147,10 +147,15 @@ if [ -d "$REPO_DIR/zsh" ]; then
 		link_file "$f" "$HOME_DIR/$base"
 	done
 fi
-# adopt zsh files
+# adopt shell files
 adopt_file "$HOME_DIR/.zshrc" "$REPO_DIR/zsh/.zshrc"
 adopt_file "$HOME_DIR/.zshenv" "$REPO_DIR/zsh/.zshenv"
 adopt_file "$HOME_DIR/.zprofile" "$REPO_DIR/zsh/.zprofile"
+adopt_file "$HOME_DIR/.bashrc" "$REPO_DIR/zsh/.bashrc"
+# link .bashrc if present in repo
+if [ -f "$REPO_DIR/zsh/.bashrc" ]; then
+	link_file "$REPO_DIR/zsh/.bashrc" "$HOME_DIR/.bashrc"
+fi
 
 # git
 if [ -d "$REPO_DIR/git" ]; then
