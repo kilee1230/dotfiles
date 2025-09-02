@@ -149,7 +149,6 @@ if [ -d "$REPO_DIR/zsh" ]; then
 fi
 # adopt shell files
 adopt_file "$HOME_DIR/.zshrc" "$REPO_DIR/zsh/.zshrc"
-adopt_file "$HOME_DIR/.zshenv" "$REPO_DIR/zsh/.zshenv"
 adopt_file "$HOME_DIR/.zprofile" "$REPO_DIR/zsh/.zprofile"
 adopt_file "$HOME_DIR/.bashrc" "$REPO_DIR/zsh/.bashrc"
 # link .bashrc if present in repo

@@ -1,7 +1,7 @@
 [user]
 	name = Kin Fei Lee
-	email = kilee@seekasia.com
-	signingkey = E4AB12B106CA83BF
+	email = <redacted>
+	signingkey = <redacted>
 [commit]
 	gpgsign = true
 [gpg]
