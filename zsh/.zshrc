@@ -84,8 +84,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -150,6 +148,8 @@ export PATH=$PATH:$HOME/go/bin
 
 alias air='~/.air'
 alias nx="nlx"
+alias ll='ls -lG'
+
 
 
 [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
@@ -159,7 +159,9 @@ export COREPACK_ENABLE_STRICT=0
 # Add Docker Desktop for Mac (docker)
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
+PATH=~/.console-ninja/.bin:$PATH
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-
-PATH=~/.console-ninja/.bin:$PATH

@@ -69,9 +69,7 @@
   "redhat.telemetry.enabled": true,
   "scm.showHistoryGraph": false,
   "snyk.advanced.cliPath": "/Users/kilee/Library/Application Support/snyk-ls/snyk-macos",
-  "snyk.trustedFolders": [
-    "/Users/kilee/Documents/Dev/adv-invoice"
-  ],
+  "snyk.trustedFolders": ["/Users/kilee/Documents/Dev/adv-invoice"],
   "snyk.yesWelcomeNotification": false,
   "sqltools.useNodeRuntime": true,
   "svg.preview.mode": "svg",
@@ -118,5 +116,6 @@
     "!Select sequence",
     "!Split",
     "!Split sequence"
-  ]
+  ],
+  "database-client.autoSync": true
 }

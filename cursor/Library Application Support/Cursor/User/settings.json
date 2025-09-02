@@ -25,14 +25,11 @@
   },
   "chat.editing.alwaysSaveWithGeneratedChanges": true,
   "console-ninja.outputMode": "In View",
-  "cursor.composer.textSizeScale": 1.15,
-  "cursor.general.disableHttp2": true,
-  "database-client.autoSync": true,
   "datadog.telemetry.setup.enableTelemetry": "enabled",
   "debug.javascript.defaultRuntimeExecutable": {
     "pwa-node": "node"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.maxComputationTime": 0,
   "docker.extension.enableComposeLanguageServer": false,
   "editor.acceptSuggestionOnEnter": "on",
@@ -49,6 +46,7 @@
   "git.enableSmartCommit": true,
   "git.ignoreRebaseWarning": true,
   "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
   "gitlens.views.scm.grouped.views": {
     "branches": false,
     "commits": false,
@@ -71,9 +69,7 @@
   "redhat.telemetry.enabled": true,
   "scm.showHistoryGraph": false,
   "snyk.advanced.cliPath": "/Users/kilee/Library/Application Support/snyk-ls/snyk-macos",
-  "snyk.trustedFolders": [
-    "/Users/kilee/Documents/Dev/adv-invoice"
-  ],
+  "snyk.trustedFolders": ["/Users/kilee/Documents/Dev/adv-invoice"],
   "snyk.yesWelcomeNotification": false,
   "sqltools.useNodeRuntime": true,
   "svg.preview.mode": "svg",
@@ -83,7 +79,7 @@
     "CW_NEW_SESSION": "1",
     "FIG_NEW_SESSION": "1",
     "Q_NEW_SESSION": "1"
-  },
+},
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vscode-pets.petColor": "lightbrown",
@@ -120,5 +116,6 @@
     "!Select sequence",
     "!Split",
     "!Split sequence"
-  ]
+  ],
+  "database-client.autoSync": true
 }
