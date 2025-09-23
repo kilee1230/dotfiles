@@ -9,3 +9,7 @@ PATH=~/.console-ninja/.bin:$PATH
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/bashrc.post.bash"
+
+if [[ -n "$CURSOR_AGENT" ]]; then
+  PS1='\u@\h \W \$ '
+fi

@@ -25,6 +25,7 @@
   },
   "chat.editing.alwaysSaveWithGeneratedChanges": true,
   "console-ninja.outputMode": "In View",
+  "database-client.autoSync": true,
   "datadog.telemetry.setup.enableTelemetry": "enabled",
   "debug.javascript.defaultRuntimeExecutable": {
     "pwa-node": "node"
@@ -69,7 +70,9 @@
   "redhat.telemetry.enabled": true,
   "scm.showHistoryGraph": false,
   "snyk.advanced.cliPath": "/Users/kilee/Library/Application Support/snyk-ls/snyk-macos",
-  "snyk.trustedFolders": ["/Users/kilee/Documents/Dev/adv-invoice"],
+  "snyk.trustedFolders": [
+    "/Users/kilee/Documents/Dev/adv-invoice"
+  ],
   "snyk.yesWelcomeNotification": false,
   "sqltools.useNodeRuntime": true,
   "svg.preview.mode": "svg",
@@ -116,6 +119,5 @@
     "!Select sequence",
     "!Split",
     "!Split sequence"
-  ],
-  "database-client.autoSync": true
+  ]
 }
